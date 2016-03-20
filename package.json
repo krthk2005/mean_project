@@ -1,0 +1,25 @@
+{
+  "name": "mean-app",
+  "version": "1.0.0",
+  "description": "to develop mean application",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/krthk2005/mean_project.git"
+  },
+  "keywords": [
+    "test",
+    "mean",
+    "project"
+  ],
+  "author": "kartheek",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/krthk2005/mean_project/issues"
+  },
+  "homepage": "https://github.com/krthk2005/mean_project#readme"
+}

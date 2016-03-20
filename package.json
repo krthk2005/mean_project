@@ -3,6 +3,15 @@
   "version": "1.0.0",
   "description": "to develop mean application",
   "main": "server.js",
+  "dependencies": {
+    "bcrypt": "^0.8.5",
+    "body-parser": "^1.15.0",
+    "connect": "^3.4.1",
+    "jsonfile": "^2.2.3",
+    "express": "^4.13.4",
+    "serve-static": "^1.10.2"
+  },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
@@ -12,17 +21,12 @@
     "url": "git+https://github.com/krthk2005/mean_project.git"
   },
   "keywords": [
-    "test",
-    "mean",
-    "project"
+    "mean"
   ],
   "author": "kartheek",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/krthk2005/mean_project/issues"
   },
-  "homepage": "https://github.com/krthk2005/mean_project#readme",
-  "dependencies": {
-    "bcrypt": "^0.8.5"
-  }
+  "homepage": "https://github.com/krthk2005/mean_project#readme"
 }

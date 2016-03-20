@@ -1,12 +1,32 @@
 <!DOCTYPE html>
-<html  ng-app="">
-    <head>
-        <title>MEAN Demo</title>
-          </head>
-    <body>
-<input type="text" ng-model ="test"/>
-        <p>This is a sample. Project</p>{{test}}
-<script src="../bower_components/jquery/dist/jquery.min.js"></script>
-<script src="../bower_components/angular/angular.min.js"></script>
-   </body>
+<html ng-app="myApp">
+<head>
+	<!-- <base href="/"> -->
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="shortcut icon" href="https://lh3.googleusercontent.com/-tzTJ976z35g/AAAAAAAAAAI/AAAAAAAAADU/zqmxQdsQ8M0/s46-c-k-no/photo.jpg">
+	<title>MEAN Development</title>
+	
+	<!-- Bower files -->
+	<link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script type="text/javascript"  src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../bower_components/angular/angular.min.js"></script>
+	<script type="text/javascript" src="../bower_components/angular-route/angular-route.min.js"></script>
+	<script type="text/javascript" src="../bower_components/angular-resource/angular-resource.min.js"></script>
+
+	<!-- Insline Scripts -->
+	<script type="text/javascript" src="/assets/js/app.js"></script>
+	<script type="text/javascript" src="/partials/login-folder/loginController.js"></script>
+	<script type="text/javascript" src="/partials/home-folder/homeController.js"></script>
+
+	<!-- Insline CSS Files -->
+	<link rel="stylesheet" type="text/css" href="./assets/css/responsive.css">
+
+
+</head>
+<body>
+	<div ng-view></div>
+</body>
 </html>

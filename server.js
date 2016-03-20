@@ -9,7 +9,8 @@ var file = './data/employees.json';
 var app = express()
   .use(bodyParser.urlencoded())
   .use(express.static(__dirname + '/public'))
-  .use('/node_modules',  express.static(__dirname + '/node_modules'));
+  .use('/node_modules',  express.static(__dirname + '/node_modules'))
+  .use('/bower_components',  express.static(__dirname + '/bower_components'));;
  
 app.get('/employees', function  (req, res) {
   res.json(jsonfile.readFileSync(file));

@@ -24,6 +24,6 @@ app.get('/*', function  (req, res) {
   res.json(404, {status: 'not found'});
 });
 
-http.createServer(app).listen(process.env.PORT, function () {
+http.createServer(app).listen(process.env.PORT || 3000, function () {
   console.log("Server ready at http://localhost:3000");
 });

@@ -1,0 +1,28 @@
+{
+  "name": "mean-app",
+  "description": "to develop mean application",
+  "main": "server.js",
+  "authors": [
+    "kartheek"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "mean"
+  ],
+  "homepage": "https://github.com/krthk2005/mean_project",
+  "moduleType": [
+    "node"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "angularjs#^1.5.2",
+    "bootstrap": "^3.3.6",
+    "font-awesome": "^4.5.0"
+  }
+}

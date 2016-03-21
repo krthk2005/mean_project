@@ -1,0 +1,11 @@
+{ 
+    "success": {
+        "data": "go to home",
+        "response": "success"
+    },
+    "loginInvalidResponse": {
+        "data": "you sent invalid data",
+        "response": "Wrong Credentials"
+    }
+
+}

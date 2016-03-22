@@ -1,10 +1,31 @@
 [{
     "email": "kartheek@gmail.com",
-    "name": "kartheek"
+    "password":"kartheek",
+    "name": "kartheek",
+    "id": 1,
+    "bgColor": "black",
+    "picture": "",
+    "isActive": true,
+    "age": 26
+
 }, {
     "email": "anandhi@gmail.com",
-    "name": "anandhi"
+    "password":"anandhi",
+    "name": "anandhi",
+    "id": 2,
+    "bgColor": "black",
+    "picture": "",
+    "isActive": true,
+    "age": 23
+
 }, {
     "email": "kiran@gmail.com",
-    "name": "kiran"
+    "password":"kiran",
+    "name": "kiran",
+    "id": 3,
+    "bgColor": "black",
+    "picture": "",
+    "isActive": true,
+    "age": 24
+
 }]

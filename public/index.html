@@ -10,29 +10,38 @@
 	<title>MEAN Development</title>
 
 	<!-- Bower files -->
+	<!-- build:css css/third-party-min.css -->
 	<link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+	<!-- endbuild -->
+	
+	<!-- build:js js/third-party-min.js -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script type="text/javascript" src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="../bower_components/angular/angular.min.js"></script>
 	<script type="text/javascript" src="../bower_components/angular-route/angular-route.min.js"></script>
 	<script type="text/javascript" src="../bower_components/angular-resource/angular-resource.min.js"></script>
 	<script src="../bower_components/angular-messages/angular-messages.js"></script>
+	<!-- endbuild -->
+	
 	<!-- Insline Scripts -->
+	<!-- build:js js/custom-min.js -->
 	<script type="text/javascript" src="/assets/js/app.js"></script>
 	<script type="text/javascript" src="/shared/services.js"></script>
 	<script type="text/javascript" src="/partials/login-folder/loginController.js"></script>
 	<script type="text/javascript" src="/partials/home-folder/homeController.js"></script>
-
+	<!-- endbuild -->
+	
 	<!-- Insline CSS Files -->
+	<!-- build:css css/custom-min.css -->
 	<link rel="stylesheet" type="text/css" href="./assets/css/responsive.css">
-
+	<!-- endbuild -->
 
 </head>
 
 <body>
-	<div class="container">
+	
 		<div ng-view></div>
-	</div>
+	
 </body>
 
 </html>

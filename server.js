@@ -15,21 +15,27 @@ var app = express()
   .use(bodyParser.json())
   .use(express.static(__dirname + '/public'))
   .use('/node_modules', express.static(__dirname + '/node_modules'))
-  .use('/bower_components', express.static(__dirname + '/bower_components'));;
-
+  .use('/bower_components', express.static(__dirname + '/bower_components'));
+  
+function merge_options(obj1,obj2){
+    var obj3 = {};
+    for (var attrname in obj1) { obj3[attrname] = obj1[attrname]; }
+    for (var attrname in obj2) { obj3[attrname] = obj2[attrname]; }
+    return obj3;
+}
 
 app.post('/checkUserData', function(req, res) {
-  if ((!req.body || req.body.length === 0) || req.body.name == undefined || req.body.email == undefined) {
+  if ((!req.body || req.body.length === 0) || req.body.password == undefined || req.body.email == undefined) {
     return res.send(jsonfile.readFileSync(responseJson).loginInvalidResponse);
   }
   var userData = jsonfile.readFileSync(userCredentialsJson);
   var validUser = false;
 
-  if (req.body.name.length > 4 && req.body.email.length > 7) {
+  if (req.body.password.length > 4 && req.body.email.length > 7) {
     for (var i = 0; i < userData.length; i++) {
-      if ((userData[i].name == req.body.name) && (userData[i].email == req.body.email)) {
+      if ((userData[i].password == req.body.password) && (userData[i].email == req.body.email)) {
         validUser = true;
-        res.send(jsonfile.readFileSync(responseJson).success);
+        res.send(merge_options(jsonfile.readFileSync(responseJson).success,userData[i]));
       }
     }
     if (!validUser) {
@@ -41,7 +47,9 @@ app.post('/checkUserData', function(req, res) {
   }
 });
 
-
+app.post('/validateUserProfile', function(req, res) {
+  console.log(req.body);
+});
 
 
 

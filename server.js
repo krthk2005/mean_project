@@ -32,8 +32,8 @@ app.post('/checkUserData', function(req, res) {
         res.send(jsonfile.readFileSync(responseJson).success);
       }
     }
-    if(!validUser){
-      return res.send(jsonfile.readFileSync(responseJson).loginInvalidResponse);
+    if (!validUser) {
+      return res.send(jsonfile.readFileSync(responseJson).noUserFound);
     }
   }
   else {

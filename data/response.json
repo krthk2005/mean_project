@@ -6,6 +6,10 @@
     "loginInvalidResponse": {
         "data": "you sent invalid data",
         "response": "Wrong Credentials"
+    },
+    "noUserFound": {
+        "data": "you sent invalid data",
+        "response": "No user found with these credentials"
     }
 
 }

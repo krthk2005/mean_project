@@ -1,7 +1,4 @@
 angular.module('homeModule', []).
-controller('HomeCtrl', ['$scope','SendUserProfile', function($scope,SendUserProfile){
-    $scope.test={};
-SendUserProfile.save($scope.test,function(data){
-		console.log(data); 	
-		 });
+controller('HomeCtrl', ['$scope','AuthService','LocalUserData', function($scope,user,localData){
+    $scope.test=user;
 }])

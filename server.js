@@ -2,6 +2,7 @@ var express = require('express'),
   http = require('http');
 var bodyParser = require('body-parser');
 var jsonfile = require('jsonfile');
+var path = require('path');
 
 var file = './data/employees.json';
 var responseJson = './data/response.json';
@@ -27,6 +28,15 @@ function merge_options(obj1, obj2) {
   }
   return obj3;
 }
+app.get('/*', function(req, res) {
+  // AJAX requests are aren't expected to be redirected to the AngularJS app
+  if (req.xhr) {
+    return res.status(404).send(req.url + ' not found');
+  }
+
+  // `sendfile` requires the safe, resolved path to your AngularJS app
+  res.sendfile(path.resolve(__dirname + '/public/index.html'));
+});
 
 
 app.post('/checkUserData', function(req, res) {

@@ -1,5 +1,5 @@
 <nav class="navbar navbar-inverse">
-  <div class="container-fluid">
+  <div class="container-fluid" style ="background-color: {{user.bgColor}}">
     <div class="navbar-header">
       <a class="navbar-brand" href="#">Mongo Express</a>
     </div>
@@ -8,6 +8,7 @@
     </ul>
     <ul class="nav navbar-nav navbar-right">
         <li  style="color:white" class="glyphicon glyphicon-cog"><a style="display:inline-block" href="/settings">Settings</a></li>
+        <li  style="color:white" class="glyphicon glyphicon-cog"><a style="display:inline-block" ng-click="logout()">Logout</a></li>
       </ul>
   </div>
 </nav>

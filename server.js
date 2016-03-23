@@ -69,11 +69,15 @@ app.post('/validateUserProfile', function(req, res) {
   var userData = jsonfile.readFileSync(userCredentialsJson);
   var validUser = false;
 
-  if (req.body.id.length > 4 && req.body.email.length > 7) {
+  if (req.body.id > 0 && req.body.email.length > 7) {
     for (var i = 0; i < userData.length; i++) {
       if ((userData[i].id == req.body.id) && (userData[i].email == req.body.email)) {
         validUser = true;
-        res.send(merge_options(userData[i], req.body));
+        userData[i] =merge_options(userData[i], req.body);
+        delete userData[i]['data'];
+        delete userData[i]['response'];
+        jsonfile.writeFileSync(userCredentialsJson, userData);
+        res.send(userData[i]);
       }
     }
     if (!validUser) {

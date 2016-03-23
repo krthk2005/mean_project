@@ -20,17 +20,7 @@
   <div class="container auth-form-body">
     <form name="userForm" id="userForm" ng-submit="validateLogin()" novalidate>
 
-      <!-- name field -->
-      <div ng-show="showName" class="form-group">
-        <label>Name</label>
-        <input type="text" name="name" class="form-control" ng-model="user.name" ng-minlength="5" ng-maxlength="10" required>
-        <div class="help-block" ng-messages="userForm.name.$error" ng-if="userForm.name.$touched">
-          <p ng-message="minlength">Your name is too short.</p>
-          <p ng-message="maxlength">Your name is too long.</p>
-          <p ng-message="required">Your name is required.</p>
-        </div>
-        <!-- ngMessages goes here -->
-      </div>
+     
       <!-- email field -->
       <div class="form-group">
         <label>Email</label>

@@ -7,9 +7,17 @@
         "data": "you sent invalid data",
         "response": "Wrong Credentials"
     },
+    "signupInvalidResponse": {
+        "data": "you sent invalid data",
+        "response": "Wrong Details"
+    },
     "noUserFound": {
         "data": "you sent invalid data",
         "response": "No user found with these credentials"
+    },
+    "alreadyEmailExist": {
+        "data": "you sent invalid data",
+        "response": "Already this email is exist."
     }
 
 }

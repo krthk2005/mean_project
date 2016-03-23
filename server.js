@@ -62,6 +62,39 @@ app.post('/checkUserData', function(req, res) {
   }
 });
 
+app.post('/createUserData', function(req, res) {
+  if ((!req.body || req.body.length === 0) || req.body.password == undefined || req.body.email == undefined) {
+    return res.send(jsonfile.readFileSync(responseJson).signupInvalidResponse);
+  }
+  var userData = jsonfile.readFileSync(userCredentialsJson);
+  var validUser = false;
+
+  if (req.body.email.length > 7) {
+    for (var i = 0; i < userData.length; i++) {
+      if (userData[i].email == req.body.email) {
+        validUser = true;
+      }
+
+    }
+    if (!validUser) {
+      delete req.body['data'];
+      delete req.body['response'];
+      req.body.id= userData.length;
+      userData.push(req.body);
+      merge_options(jsonfile.readFileSync(responseJson).success, req.body)
+
+      jsonfile.writeFileSync(userCredentialsJson, userData);
+      return res.send(jsonfile.readFileSync(responseJson).success);
+    }
+    else {
+      return res.send(jsonfile.readFileSync(responseJson).alreadyEmailExist);
+    }
+  }
+  else {
+    return res.send(jsonfile.readFileSync(responseJson).loginInvalidResponse);
+  }
+});
+
 app.post('/validateUserProfile', function(req, res) {
   if ((!req.body || req.body.length === 0) || req.body.id == undefined || req.body.email == undefined) {
     return res.send(jsonfile.readFileSync(responseJson).loginInvalidResponse);
@@ -73,7 +106,7 @@ app.post('/validateUserProfile', function(req, res) {
     for (var i = 0; i < userData.length; i++) {
       if ((userData[i].id == req.body.id) && (userData[i].email == req.body.email)) {
         validUser = true;
-        userData[i] =merge_options(userData[i], req.body);
+        userData[i] = merge_options(userData[i], req.body);
         delete userData[i]['data'];
         delete userData[i]['response'];
         jsonfile.writeFileSync(userCredentialsJson, userData);

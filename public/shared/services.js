@@ -3,6 +3,9 @@ angular.module('app.services', ['ngResource'])
 .factory("GetUserData", function($resource) {
   return $resource("/checkUserData");
 })
+.factory("CreateUser", function($resource) {
+  return $resource("/createUserData");
+})
 .factory("SendUserProfile", function($resource) {
   return $resource("/validateUserProfile");
 })

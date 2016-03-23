@@ -1,1 +1,51 @@
-[{"email":"test@test.com","password":"test","name":"test","id":0,"bgColor":"black","picture":"","isActive":true,"age":26},{"email":"kartheek@gmail.com","password":"kartheek","name":"kartheek","id":1,"bgColor":"black","picture":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqDrugj4g4aPOBxEXi7zv1zH_c1OXaaWbOg8HRkQuVDhb8LVn46PP8wTo","isActive":true,"age":26},{"email":"anandhi@gmail.com","password":"anandhi","name":"anandhi","id":2,"bgColor":"black","picture":"","isActive":true,"age":23},{"email":"kiran@gmail.com","password":"kiran","name":"kiran","id":3,"bgColor":"black","picture":"","isActive":true,"age":24},{"name":"darshini","email":"darshini@gmail.com","password":"darshini","age":23,"id":4,"bgColor":"black","picture":"test"},{"name":"prashanthi","email":"prashanthi@gmail.com","password":"prashanthi","age":35,"id":5}]
+[{
+    "email": "test@test.com",
+    "password": "test",
+    "name": "test",
+    "id": 0,
+    "bgColor": "black",
+    "picture": "",
+    "isActive": true,
+    "age": 26
+}, {
+    "email": "kartheek@gmail.com",
+    "password": "kartheek",
+    "name": "kartheek",
+    "id": 1,
+    "bgColor": "black",
+    "picture": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqDrugj4g4aPOBxEXi7zv1zH_c1OXaaWbOg8HRkQuVDhb8LVn46PP8wTo",
+    "isActive": true,
+    "age": 26
+}, {
+    "email": "anandhi@gmail.com",
+    "password": "anandhi",
+    "name": "anandhi",
+    "id": 2,
+    "bgColor": "black",
+    "picture": "",
+    "isActive": true,
+    "age": 23
+}, {
+    "email": "kiran@gmail.com",
+    "password": "kiran",
+    "name": "kiran",
+    "id": 3,
+    "bgColor": "black",
+    "picture": "",
+    "isActive": true,
+    "age": 24
+}, {
+    "name": "darshini",
+    "email": "darshini@gmail.com",
+    "password": "darshini",
+    "age": 23,
+    "id": 4,
+    "bgColor": "black",
+    "picture": "test"
+}, {
+    "name": "prashanthi",
+    "email": "prashanthi@gmail.com",
+    "password": "prashanthi",
+    "age": 35,
+    "id": 5
+}]

@@ -1,9 +1,6 @@
-angular.module('homeModule', []).
-controller('HomeCtrl', ['$scope','$location', 'AuthService', 'LocalUserData', function($scope,$location, user, localData) {
+angular.module('homeModule', ['ngCookies']).
+controller('HomeCtrl', ['$scope','$location','$cookies', 'LocalUserData', function($scope,$location,$cookies, localData) {
     $scope.user = localData.user;
-    $scope.logout = function() {
-        var data = {};
-        localData.setData(data);
-        $location.path("/");
-    }
+    var username = $cookies.get("email");
+    console.log(username);
 }])

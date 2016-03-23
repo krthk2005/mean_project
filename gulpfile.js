@@ -8,7 +8,7 @@ gulp.task("default",function(){
     console.log("hello");
 });
 gulp.task('useref', function(){
-  return gulp.src('app/*.html')
+  return gulp.src('public/*.html')
     .pipe(useref({searchPath:['./libs','']}))
     .pipe(gulpIf('*.js', uglify()))
     // Minifies only if it's a CSS file

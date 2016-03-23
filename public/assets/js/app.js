@@ -1,11 +1,4 @@
-var app = angular.module('myApp', ['ngRoute','app.services','loginModule','homeModule','settingsModule'])
-.controller('appCtrl',['$scope','LocalUserData',function($scope,localData){
-  $scope.logout = function(){
-      var data ={};
-				localData.setData(data);
-  }
-}]);
-
+var app = angular.module('myApp', ['ngRoute','app.services','loginModule','homeModule','settingsModule']);
 app.config(['$routeProvider','$locationProvider',function($routeProvider,$locationProvider) {
 	$routeProvider.
       when('/', {

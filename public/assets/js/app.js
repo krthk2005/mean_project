@@ -28,9 +28,13 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
 
 app.run(function($rootScope, $location, LocalUserData) {
   $rootScope.$on("$routeChangeStart", function(event, next, current) {
-    if ((LocalUserData.user == undefined || LocalUserData.user.email == undefined)) {
+    if (next.templateUrl == "partials/login-folder/signUp.html") {
+      $location.path("/signUpHere");
+    }
+    else if ((LocalUserData.user == undefined || LocalUserData.user.email == undefined)) {
       $location.path("/");
-    }else if(next.templateUrl == "partials/login-folder/login.html" && LocalUserData.user.email != undefined){
+    }
+    else if (next.templateUrl == "partials/login-folder/login.html" && LocalUserData.user.email != undefined) {
       $location.path("/home");
     }
   })

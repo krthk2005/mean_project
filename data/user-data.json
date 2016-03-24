@@ -48,4 +48,10 @@
     "password": "prashanthi",
     "age": 35,
     "id": 5
+}, {
+    "name": "ravichandra",
+    "email": "ravichandra@gmail.com",
+    "password": "ravichandra",
+    "age": 23,
+    "id": 6
 }]

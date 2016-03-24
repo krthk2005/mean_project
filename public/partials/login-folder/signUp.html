@@ -7,7 +7,7 @@
       <!-- name field -->
       <div class="form-group">
         <label>Name</label>
-        <input type="text" name="name" class="form-control" ng-model="user.name" ng-minlength="5" ng-maxlength="10" required>
+        <input type="text" name="name" class="form-control" ng-model="user.name" ng-minlength="5" ng-maxlength="15" required>
         <div class="help-block" ng-messages="userForm.name.$error" ng-if="userForm.name.$touched">
           <p ng-message="minlength">Your name is too short.</p>
           <p ng-message="maxlength">Your name is too long.</p>

@@ -1,10 +1,13 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
-    <div class="navbar-header">
+    <div class="navbar-header hidden-sm hidden-xs">
       <a class="navbar-brand" href="#">MEAN</a>
     </div>
       </div>
-<div id="signUp" class="dropdown">
+     <div class="navbar-header hidden-lg hidden-md floatRight">
+      <a class="navbar-brand" href="#">MEAN</a>
+    </div>
+<div id="signUp" class="dropdown hidden-xs hidden-sm">
   <span class="dropdown-toggle glyphicon glyphicon-user" data-toggle="dropdown"> SignUp<span class="caret"></span></span>
     <ul class="dropdown-menu">
     <li><a class="glyphicon glyphicon-fire" href="#">GitHub</a></li>
@@ -13,5 +16,29 @@
     </ul>&nbsp;&nbsp;
     <span></span><a class="dropdown-toggle glyphicon glyphicon-lock" href="/login"> Login</a></span>
 </div>
+  <div id="myNav" class="overlay">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">Menu</a></span>
+<ul class="overlay-content"><li><span class="dropdown-toggle glyphicon glyphicon-user" data-toggle="dropdown"> SignUp<span 
+
+class="caret"></span></span>
+    <ul class="dropdown-menu">
+    <li><a class="glyphicon glyphicon-fire" href="#">GitHub</a></li>
+    <li><a 
+
+class="glyphicon glyphicon-globe" href="#">Google</a></li>
+    <li><a class="glyphicon glyphicon-globe" ng-click="showName =!showName" 
+
+href="/signUpHere">Connect</a></li>
+    </ul>&nbsp;&nbsp;</li>
+    <li><span></span><a class="dropdown-toggle glyphicon glyphicon-lock" 
+
+href="/login"> Login</a></span></li></ul>
+
+</div>
+
+<!-- Use any element to open/show the overlay navigation menu -->
+<span class=" menuButton floatLeft hidden-md hidden-lg glyphicon glyphicon-th-list"onclick="openNav()"></span>
+                </div>
+                
 </nav>
 	

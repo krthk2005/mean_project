@@ -1,2 +1,11 @@
 <div ng-include="'/partials/common/header.html'"></div>
+
 <img src="{{user.picture}}"></img>
+<div ng-init="nearme()" class="the-blur">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9">{{weather.temperature.summary}}</div>
+            <div class="col-sm-3  text-center"><h1>{{weather.currently.temperature}}</h1></div>
+        </div>
+    </div>
+</div>

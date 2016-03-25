@@ -26,6 +26,7 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
 }]);
 
 
+/*
 app.run(function($rootScope, $location, LocalUserData) {
   $rootScope.$on("$routeChangeStart", function(event, next, current) {
     if (next.templateUrl == "partials/login-folder/signUp.html") {
@@ -39,3 +40,4 @@ app.run(function($rootScope, $location, LocalUserData) {
     }
   })
 })
+*/

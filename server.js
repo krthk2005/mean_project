@@ -3,7 +3,7 @@ var express = require('express'),
 var bodyParser = require('body-parser');
 var jsonfile = require('jsonfile');
 var path = require('path');
-var cors = require('cors')
+// var cors = require('cors')
 
 var file = './data/employees.json';
 var responseJson = './data/response.json';
@@ -23,7 +23,7 @@ var app = express()
   }))
   .use(bodyParser.json())
   .use(express.static(__dirname + '/public'))
-  .use(cors())
+  // .use(cors())
   .use(allowCrossDomain)
   .use('/node_modules', express.static(__dirname + '/node_modules'))
   .use('/bower_components', express.static(__dirname + '/bower_components'));
@@ -39,23 +39,23 @@ function merge_options(obj1, obj2) {
   return obj3;
 }
 
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
-app.all('*', function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-  next();
-});
+// app.use(function(req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//   next();
+// });
+// app.all('*', function(req, res, next) {
+//   res.header('Access-Control-Allow-Origin', '*');
+//   res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+//   res.header('Access-Control-Allow-Headers', 'Content-Type');
+//   next();
+// });
 
-app.all('/', function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  next();
- });
+// app.all('/', function(req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Headers", "X-Requested-With");
+//   next();
+// });
 
 app.get('/*', function(req, res) {
   // AJAX requests are aren't expected to be redirected to the AngularJS app

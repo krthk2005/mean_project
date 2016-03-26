@@ -9,6 +9,9 @@ angular.module('app.services', ['ngResource'])
 .factory("SendUserProfile", function($resource) {
   return $resource("/validateUserProfile");
 })
+.factory("Weather", function($resource) {
+  return $resource("/employees");
+})
 
 .factory('AuthService', [function() {
    var user={

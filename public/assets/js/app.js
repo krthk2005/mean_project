@@ -1,7 +1,12 @@
 var app = angular.module('myApp', ['ngRoute', 'app.services', 'loginModule', 'headerModule', 'homeModule', 'settingsModule']);
 
 
-app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+app.config(['$routeProvider', '$locationProvider', '$httpProvider', function($routeProvider, $locationProvider, $httpProvider) {
+  $httpProvider.defaults.useXDomain = true;
+  $httpProvider.defaults.withCredentials = true;
+  delete $httpProvider.defaults.headers.common["X-Requested-With"];
+  $httpProvider.defaults.headers.common["Accept"] = "application/json";
+  $httpProvider.defaults.headers.common["Content-Type"] = "application/json";
   $routeProvider.
   when('/', {
     templateUrl: 'partials/login-folder/login.html',

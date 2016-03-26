@@ -15,7 +15,7 @@ controller('loginCtrl', ['$scope', '$cookies', 'GetUserData', 'CreateUser', 'Loc
 		};
 		$scope.createUser = function() {
 			CreateUser.save($scope.user, function(data) {
-				alert(data);
+				alert(data.data);
 			});
 		};
 	}

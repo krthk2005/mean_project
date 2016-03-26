@@ -3,19 +3,13 @@ var express = require('express'),
 var bodyParser = require('body-parser');
 var jsonfile = require('jsonfile');
 var path = require('path');
-// var cors = require('cors')
+var cors = require('cors')
 
 var file = './data/employees.json';
 var responseJson = './data/response.json';
 var userCredentialsJson = './data/user-data.json';
 
-var allowCrossDomain = function(req, res, next) {
-    res.header('Access-Control-Allow-Origin', 'api.openweathermap.org');
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    res.header('Access-Control-Allow-Headers', 'Content-Type');
 
-    next();
-}
 
 var app = express()
   .use(bodyParser.urlencoded({
@@ -23,8 +17,7 @@ var app = express()
   }))
   .use(bodyParser.json())
   .use(express.static(__dirname + '/public'))
-  // .use(cors())
-  .use(allowCrossDomain)
+  .use(cors())
   .use('/node_modules', express.static(__dirname + '/node_modules'))
   .use('/bower_components', express.static(__dirname + '/bower_components'));
 
@@ -57,15 +50,7 @@ app.all('/', function(req, res, next) {
   next();
 });
 
-app.get('/*', function(req, res) {
-  // AJAX requests are aren't expected to be redirected to the AngularJS app
-  if (req.xhr) {
-    return res.status(404).send(req.url + ' not found');
-  }
 
-  // `sendfile` requires the safe, resolved path to your AngularJS app
-  res.sendfile(path.resolve(__dirname + '/public/index.html'));
-});
 
 
 app.post('/checkUserData', function(req, res) {
@@ -108,7 +93,7 @@ app.post('/createUserData', function(req, res) {
     if (!validUser) {
       delete req.body['data'];
       delete req.body['response'];
-      req.body.id= userData.length;
+      req.body.id = userData.length;
       userData.push(req.body);
       merge_options(jsonfile.readFileSync(responseJson).success, req.body)
 
@@ -152,6 +137,13 @@ app.post('/validateUserProfile', function(req, res) {
 });
 
 
+// app.get('/forecast', function(req, res) {
+//   req({
+//     url: "https://api.forecast.io/forecast/2c56930e3e0117b9943b9f618acfe981/17.3434321,78.536526"
+//   }, function(error, response, body) {
+//     res.send(response.body);
+//   });
+// })
 
 app.get('/employees', function(req, res) {
   res.json(jsonfile.readFileSync(file));
@@ -161,12 +153,49 @@ app.post('/employeeModifications', function(req, res) {
   jsonfile.writeFileSync(file, req.body);
   res.send("success");
 });
+var proxy = require('express-http-proxy');
+ 
+ 
+app.use('/proxy', proxy('https://api.forecast.io/forecast/2c56930e3e0117b9943b9f618acfe981/17.3434321,78.536526', {
+  filter: function(req, res) {
+     return req.method == 'GET';
+  },
+  forwardPath: function(req, res) {
+    return require('url').parse(req.url).path;
+  }
+}));
+var apiForwardingUrl = 'http://api.open-notify.org/astros.json?';
 
-app.get('/*', function(req, res) {
-  res.json(404, {
-    status: 'not found'
-  });
+var httpProxy = require('http-proxy');
+
+var apiProxy = httpProxy.createProxyServer();
+app.all("/space", function(req, res) {
+    apiProxy.web(req, res, {target: apiForwardingUrl});
 });
+// var request = require('request');
+// app.get('/forecast', function(req, res) {
+//   // res.send("success");
+//   request('https://api.forecast.io/forecast/2c56930e3e0117b9943b9f618acfe981/17.3434321,78.536526', function(error, response, body) {
+//     if (!error && response.statusCode == 200) {
+//       response.send(body);
+//       console.log(body) // Print the google web page.
+//     }
+//   })
+// });
+app.get('/*', function(req, res) {
+  // AJAX requests are aren't expected to be redirected to the AngularJS app
+  if (req.xhr) {
+    return res.status(404).send(req.url + ' not found');
+  }
+  // `sendfile` requires the safe, resolved path to your AngularJS app
+  res.sendfile(path.resolve(__dirname + '/public/index.html'));
+});
+
+// app.get('/*', function(req, res) {
+//   res.json(404, {
+//     status: 'not found'
+//   });
+// });
 
 http.createServer(app).listen(process.env.PORT, function() {
   console.log("Server ready at http://localhost:3000");

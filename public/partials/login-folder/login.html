@@ -16,13 +16,14 @@
           <p ng-message="required">Your email is required.</p>
         </div>
       </div>
-      <div class="form-group">
+     <div class="form-group">
         <label>Password</label>
-        <input type="password" name="password" class="form-control" ng-model="user.password" required>
+        <input type="password" name="password" class="form-control" ng-model="user.password" ng-pattern="/(?=.*[a-z])(?=.*[^a-zA-Z])/" required>
 
         <!-- ngMessages goes here -->
         <div class="help-block" ng-messages="userForm.password.$error" ng-if="userForm.password.$touched">
           <p ng-message="required">Your password is required.</p>
+          <p ng-message="pattern">Must contain one non-alpha character (a number or a symbol.)</p>
         </div>
       </div>
       <div class="form-group">

@@ -15,11 +15,25 @@ controller('HomeCtrl', ['$scope', '$location', '$http', '$cookies', 'LocalUserDa
                 console.log($scope.latitude);
                 console.log($scope.longitude);
                 if ($scope.latitude != undefined && $scope.latitude > 0) {
-                    $http.get('https://api.forecast.io/forecast/2c56930e3e0117b9943b9f618acfe981/17.3434321,78.536526').then(function successCallback(response) {
-                        $scope.weather = response.data;
-                    }, function errorCallback(response) {
-                        console.log("weather not found")
+                    $http({
+                        method: 'GET',
+                        url: "http://api.openweathermap.org/data/2.5/weather?lat=17.3434321&lon=78.536526&appid=6c8c7c715a5bf8cc2938f6279ca2d4c6",
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Access-Control-Allow-Origin': '*'
+                        }
+                    }).
+                    success(function(status) {
+                        $scope.weather = status.data;
+                    }).
+                    error(function(status) {
+                        console.log("failure");
                     });
+                    // $http.get('https://api.forecast.io/forecast/2c56930e3e0117b9943b9f618acfe981/17.3434321,78.536526').then(function successCallback(response) {
+                    //     $scope.weather = response.data;
+                    // }, function errorCallback(response) {
+                    //     console.log("weather not found")
+                    // });
                 }
 
             });

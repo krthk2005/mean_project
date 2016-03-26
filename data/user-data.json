@@ -9,7 +9,7 @@
     "age": 26
 }, {
     "email": "kartheek@gmail.com",
-    "password": "kartheek",
+    "password": "kartheek@1",
     "name": "kartheek",
     "id": 1,
     "bgColor": "black",
@@ -18,7 +18,7 @@
     "age": 26
 }, {
     "email": "anandhi@gmail.com",
-    "password": "anandhi",
+    "password": "anandhi@5",
     "name": "anandhi",
     "id": 2,
     "bgColor": "black",
@@ -27,7 +27,7 @@
     "age": 23
 }, {
     "email": "kiran@gmail.com",
-    "password": "kiran",
+    "password": "kiran@1",
     "name": "kiran",
     "id": 3,
     "bgColor": "black",
@@ -37,7 +37,7 @@
 }, {
     "name": "darshini",
     "email": "darshini@gmail.com",
-    "password": "darshini",
+    "password": "darshini@1",
     "age": 23,
     "id": 4,
     "bgColor": "black",
@@ -45,13 +45,26 @@
 }, {
     "name": "prashanthi",
     "email": "prashanthi@gmail.com",
-    "password": "prashanthi",
+    "password": "prashanthi@1",
     "age": 35,
     "id": 5
 }, {
     "name": "ravichandra",
     "email": "ravichandra@gmail.com",
-    "password": "ravichandra",
+    "password": "ravichandra@1",
     "age": 23,
     "id": 6
+}, {
+    "name": "bidisha",
+    "email": "bidisha@gmail.com",
+    "password": "bidisha@3",
+    "age": 22,
+    "id": 7
+}, {
+    "name": "divya",
+    "email": "divya@gmail.com",
+    "password_c": "divya@3",
+    "password": "divya@5",
+    "age": 23,
+    "id": 8
 }]

@@ -153,17 +153,17 @@ app.post('/employeeModifications', function(req, res) {
   jsonfile.writeFileSync(file, req.body);
   res.send("success");
 });
-var proxy = require('express-http-proxy');
+// var proxy = require('express-http-proxy');
  
  
-app.use('/proxy', proxy('https://api.forecast.io/forecast/2c56930e3e0117b9943b9f618acfe981/17.3434321,78.536526', {
-  filter: function(req, res) {
-     return req.method == 'GET';
-  },
-  forwardPath: function(req, res) {
-    return require('url').parse(req.url).path;
-  }
-}));
+// app.use('/proxy', proxy('https://api.forecast.io/forecast/2c56930e3e0117b9943b9f618acfe981/17.3434321,78.536526', {
+//   filter: function(req, res) {
+//     return req.method == 'GET';
+//   },
+//   forwardPath: function(req, res) {
+//     return require('url').parse(req.url).path;
+//   }
+// }));
 var apiForwardingUrl = 'http://api.open-notify.org/astros.json?';
 
 var httpProxy = require('http-proxy');
@@ -188,15 +188,22 @@ app.get('/*', function(req, res) {
     return res.status(404).send(req.url + ' not found');
   }
   // `sendfile` requires the safe, resolved path to your AngularJS app
-  res.sendfile(path.resolve(__dirname + '/public/index.html'));
+  res.sendFile(path.resolve(__dirname + '/public/index.html'));
 });
 
-// app.get('/*', function(req, res) {
-//   res.json(404, {
-//     status: 'not found'
-//   });
-// });
 
+// public foder for client side
+
+// express route to get the forecast data/json
+// app.get('/forecast', function(req, res) {
+
+//     request({
+//         url: "https://api.forecast.io/forecast/2c56930e3e0117b9943b9f618acfe981/17.3434321,78.536526"
+//     }, function (error, response, body) {
+//         res.send(response.body);
+//     });
+
+// })
 http.createServer(app).listen(process.env.PORT, function() {
   console.log("Server ready at http://localhost:3000");
 });

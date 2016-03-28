@@ -29,3 +29,11 @@ angular.module('app.services', ['ngResource'])
 	}
 	return userData;
 }])
+.factory('LocalWeatherData',  [function(){
+	var weatherData ={};
+	weatherData.setData = function(obj){
+		weatherData.weather = obj;
+	}
+	return weatherData;
+}])
+

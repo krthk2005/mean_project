@@ -1,54 +1,95 @@
-a{
- cursor:pointer;   
+a {
+    cursor: pointer;
 }
 
-#signUp{
+#signUp {
     float: right;
     margin: -34px 97px 5px 10px;
 }
-.glyphicon{
+
+.glyphicon {
     color: #fff;
-} 
-#bg{
-    background-image:url('http://bilmosfer.com/uploads/posts/2013-08/1376610777_twitter_arka_plan19-1024x640.jpg');
-    -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
 }
+
+
+/* Picture Horizontal scroll Starts */
+
+.cover-container {
+    height: 180px;
+    width: 100%;
+    white-space: nowrap;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+
+.cover-item {
+    position: relative;
+    display: inline-block;
+    margin: 8px 8px;
+    box-shadow: 2px 2px 4px #bbb;
+    border-top-right-radius: 4px;
+    width: 116px;
+    height: 158px;
+    vertical-align: bottom;
+    background-position: top left;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Picture Horizontal scroll: Ends */
+#bg {
+    background-image: url('http://supernovathemes.com/wp-content/themes/supernonvathemes/images/bg/b44.png');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: 5000px, 5000px, cover;
+    background-repeat: no-repeat;
+}
+
 .menuButton {
     margin-top: 16px;
     margin-left: 30px;
     display: block;
 }
-.signUpHere{
-    font-size:20px;
+
+.signUpHere {
+    font-size: 20px;
 }
 
-.the-blur{
-    background:rgba(255,255,255,0.6);
+.the-blur {
+    background: rgba(255, 255, 255, 0.6);
 }
+
 .overlay {
-    /* Height & width depends on how you want to reveal the overlay (see JS below) */    
+    /* Height & width depends on how you want to reveal the overlay (see JS below) */
     height: 100%;
     width: 0;
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
     left: 0;
     top: 0;
-    background-color: rgb(0,0,0); /* Black fallback color */
-    background-color: rgba(0,0,0, 0.9); /* Black w/opacity */
-    overflow-x: hidden; /* Disable horizontal scroll */
-    transition: 0.5s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+    background-color: rgb(0, 0, 0);
+    /* Black fallback color */
+    background-color: rgba(0, 0, 0, 0.9);
+    /* Black w/opacity */
+    overflow-x: hidden;
+    /* Disable horizontal scroll */
+    transition: 0.5s;
+    /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
 }
 
+
 /* Position the content inside the overlay */
-.overlay-content {   
+
+.overlay-content {
     position: relative;
     top: 25%;
     width: 100%;
     line-height: 50px;
 }
+
 .caret-right {
     border-bottom: 6px solid transparent;
     border-top: 6px solid transparent;
@@ -61,40 +102,54 @@ a{
     margin-top: 10px;
     margin-left: 10px;
 }
-.postLogin{
-  font-size:20px;
+
+.postLogin {
+    font-size: 20px;
 }
-.placeFix{
-        margin-top: 114px;
+
+.placeFix {
+    margin-top: 114px;
     margin-left: 30px;
 }
-.signUpDrop{
+
+.signUpDrop {
     top: 10%;
     left: 40%;
 }
+
+
 /* When you mouse over the navigation links, change their color */
-.overlay a:hover, .overlay a:focus {
+
+.overlay a:hover,
+.overlay a:focus {
     color: #f1f1f1;
 }
 
+
 /* Position the close button (top right corner) */
+
 .closebtn {
-       position: absolute;
+    position: absolute;
     top: 32px;
     right: 159px;
     font-size: 45px !important;
     color: #fff;
 }
 
+
 /* When the height of the screen is less than 450 pixels, change the font-size of the links and position the close button again, so they don't overlap */
+
 @media screen and (max-height: 450px) {
-    .overlay a {font-size: 20px}
+    .overlay a {
+        font-size: 20px
+    }
     .closebtn {
         font-size: 40px !important;
         top: 15px;
         right: 35px;
     }
 }
-.floatRight{
-    float:right;
+
+.floatRight {
+    float: right;
 }

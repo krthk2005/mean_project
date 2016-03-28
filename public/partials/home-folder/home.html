@@ -1,11 +1,47 @@
 <div ng-include="'/partials/common/header.html'"></div>
 
 <img src="{{user.picture}}"></img>
-<div ng-init="nearme()" class="the-blur">
+<div id='photoGallery' ng-init="nearme()" ng-show="weather" class="the-blur">
     <div class="container">
+        <h2 class="text-center">Weather</h2>
         <div class="row">
-            <div class="col-sm-9">{{weather.temperature.summary}}</div>
-            <div class="col-sm-3  text-center"><h1>{{weather.currently.temperature}}</h1></div>
+            <div class="col-sm-9">
+                <canvas id="{{weather.icon}}" width="128" height="128"></canvas>
+                {{weather.summary}}
+            </div>
+
+            <div class="col-sm-3  text-center">
+                <h1>{{(weather.temperature - 32)/ 1.800 | number:2}}&deg; C</h1></div>
         </div>
     </div>
 </div>
+<!-- Horizontal Photo gallery starts here -->
+<div id='photoGallery'>
+    <div class="container-fluid">
+        <h2 class="text-center">Picture Gallery</h2>
+        <div class="row-fluid">
+            <div class="cover-container">
+                <!-- START PANEL -->
+                <div class="cover-item" style="background-image: url('https://d1nexqccu6ll7z.cloudfront.net/_images/s-14-197-61462CCC-uk.png')"></div>
+                <div class="cover-item" style="background-image: url('https://d1nexqccu6ll7z.cloudfront.net/_images/s-14-1177-64ACF6EA-uk.png')"></div>
+                <div class="cover-item" style="background-image: url('https://d1nexqccu6ll7z.cloudfront.net/_images/s-14-1195-057710EE-uk.png')"></div>
+                <div class="cover-item" style="background-image: url('https://d1nexqccu6ll7z.cloudfront.net/_images/s-14-22127-F19D3DDB-uk.png')"></div>
+                <div class="cover-item" style="background-image: url('https://d1nexqccu6ll7z.cloudfront.net/_images/s-14-20175-8E3A7E0B-uk.png')"></div>
+                <div class="cover-item" style="background-image: url('https://d1nexqccu6ll7z.cloudfront.net/_images/s-14-14056-DDBA88C7-uk.jpg')"></div>
+                <div class="cover-item" style="background-image: url('https://d1nexqccu6ll7z.cloudfront.net/_images/s-14-9095-764FF4DD-uk.png')"></div>
+                <div class="cover-item" style="background-image: url('https://d1nexqccu6ll7z.cloudfront.net/_images/s-14-10675-3BB4D5CC-uk.png')"></div>
+                <div class="cover-item" style="background-image: url('https://d1nexqccu6ll7z.cloudfront.net/_images/s-14-5565-2680C286-uk.png')"></div>
+                <div class="cover-item" style="background-image: url('https://d1nexqccu6ll7z.cloudfront.net/_images/s-14-215-ADEFD434-uk.png')"></div>
+                <div class="cover-item" style="background-image: url('https://d1nexqccu6ll7z.cloudfront.net/_images/s-14-222-7775266C-uk.png')"></div>
+                <div class="cover-item" style="background-image: url('https://d1nexqccu6ll7z.cloudfront.net/_images/s-14-4776-BC16C44D-uk.png')"></div>
+                <div class="cover-item" style="background-image: url('https://d1nexqccu6ll7z.cloudfront.net/_images/s-14-14054-05596A39-uk.png')"></div>
+                <div class="cover-item" style="background-image: url('https://d1nexqccu6ll7z.cloudfront.net/_images/s-14-31747-5060EAE7-uk.png')"></div>
+                <div class="cover-item" style="background-image: url('https://d1nexqccu6ll7z.cloudfront.net/_images/s-14-22122-E39143D0-uk.png')"></div>
+                <div class="cover-item" style="background-image: url('https://d1nexqccu6ll7z.cloudfront.net/_images/s-14-4773-675A8B93-uk.png')"></div>
+                <div class="cover-item" style="background-image: url('https://d1nexqccu6ll7z.cloudfront.net/_images/s-14-245-A6F170DE-uk.png')"></div>
+                <!-- END PANEL -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Horizontal Photo gallery ends here -->

@@ -1,10 +1,31 @@
 angular.module('stickyModule', []).
-controller('stickyCtrl', ['$scope', 'LocalUserData','SendUserProfile', function($scope, localData,SendUserProfile) {
-     $scope.stickyList = localData.user.stickyNote;
-   
+controller('stickyCtrl', ['$scope', 'LocalUserData', 'SendUserProfile', function($scope, localData, SendUserProfile) {
+
+    if (localData.user.stickyNote != undefined) {
+        $scope.stickyList = localData.user.stickyNote;
+    }
+    else {
+        $scope.stickyList = [{
+            "content": "store",
+            "style": "top: 100px; left: 140px;",
+            "color": "sticky-orange"
+        }, {
+            "content": "your",
+            "style": "top: 200px; left: 240px;",
+            "color": "sticky-blue"
+        }, {
+            "content": "note",
+            "style": "top: 300px; left: 340px;",
+            "color": "sticky-yellow"
+        }, {
+            "content": "here",
+            "style": "top: 400px; left: 440px;",
+            "color": "sticky-green"
+        }]
+    }
     $scope.updateSticky = function(stickyList) {
-        angular.forEach($scope.stickyList, function(sticky,i) {
-          sticky.style = $("#sticky"+i)[0].style.cssText;
+        angular.forEach($scope.stickyList, function(sticky, i) {
+            sticky.style = $("#sticky" + i)[0].style.cssText;
         });
         localData.user.stickyNote = $scope.stickyList;
         SendUserProfile.save(localData.user, function(data) {

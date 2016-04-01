@@ -9,7 +9,7 @@ var cors = require('cors');
 var file = './data/employees.json';
 var responseJson = './data/response.json';
 var userCredentialsJson = './data/user-data.json';
-
+var articleDataJson = './data/article.json';
 
 
 var app = express()
@@ -148,6 +148,9 @@ app.post('/validateUserProfile', function(req, res) {
 
 app.get('/employees', function(req, res) {
   res.json(jsonfile.readFileSync(file));
+});
+app.get('/getAllArticles', function(req, res) {
+  res.json(jsonfile.readFileSync(articleDataJson));
 });
 
 app.post('/employeeModifications', function(req, res) {

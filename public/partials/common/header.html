@@ -11,8 +11,11 @@
       <li><a class="glyphicon glyphicon-home active" href="/home">&nbsp;Home</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
+        <li  style="color:white" class="glyphicon glyphicon-cog"><a style="display:inline-block" href="/stickyNotes">Notes</a></li>
         <li  style="color:white" class="glyphicon glyphicon-cog"><a style="display:inline-block" href="/settings">Settings</a></li>
         <li  style="color:white" class="glyphicon glyphicon-cog"><a style="display:inline-block" ng-click="logout()">Logout</a></li>
+        <li class="opinion"><span class="glyphicon glyphicon-thumbs-up" ng-click="count1 = count1 + 1"></span></span>{{count1}}<span>&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-thumbs-down" ng-click="count2 = count2 + 1"></span>{{count2}}<span></span>
+    </li>
       </ul>
   </div>
   <div id="myNav" class="overlay">
@@ -22,6 +25,7 @@
       <li class="active glyphicon glyphicon-home" ><a href="/home" style="display:inline">Home</a></li>
     </ul>
     <ul class="nav postLogin">
+      <li  style="color:white" class="glyphicon glyphicon-cog"><a style="display:inline-block" href="/stickyNotes">Notes</a></li>
         <li  style="color:white" class="glyphicon glyphicon-cog"><a style="display:inline-block" href="/settings">Settings</a></li>
         <li  style="color:white" class="glyphicon glyphicon-cog"><a style="display:inline-block" ng-click="logout()">Logout</a></li>
       </ul>

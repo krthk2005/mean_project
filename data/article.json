@@ -1,0 +1,51 @@
+[{
+    "name": "Politics",
+    "id": "1",
+    "imageUrl": "../assets/images/article/politics.jpg",
+    "articleURL": "https://www.discover.com/online-banking/"
+},{
+    "name": "Economics",
+    "id": "2",
+    "imageUrl": "../assets/images/article/economics.jpg",
+    "articleURL": "https://www.discover.com/online-banking/"
+},{
+    "name": "International Events",
+    "id": "3",
+    "imageUrl": "../assets/images/article/events.jpg",
+    "articleURL": "https://www.discover.com/online-banking/"
+},{
+    "name": "Sports",
+    "id": "4",
+    "imageUrl": "../assets/images/article/sports.jpg",
+    "articleURL": "https://www.discover.com/online-banking/"
+},{
+    "name": "Recent Movies",
+    "id": "5",
+    "imageUrl": "../assets/images/article/movies.jpg",
+    "articleURL": "https://www.discover.com/online-banking/"
+},{
+    "name": "Politics",
+    "id": "6",
+    "imageUrl": "../assets/images/article/politics.jpg",
+    "articleURL": "https://www.discover.com/online-banking/"
+},{
+    "name": "Economics",
+    "id": "7",
+    "imageUrl": "../assets/images/article/economics.jpg",
+    "articleURL": "https://www.discover.com/online-banking/"
+},{
+    "name": "International Events",
+    "id": "8",
+    "imageUrl": "../assets/images/article/events.jpg",
+    "articleURL": "https://www.discover.com/online-banking/"
+},{
+    "name": "Sports",
+    "id": "9",
+    "imageUrl": "../assets/images/article/sports.jpg",
+    "articleURL": "https://www.discover.com/online-banking/"
+},{
+    "name": "Recent Movies",
+    "id": "10",
+    "imageUrl": "../assets/images/article/movies.jpg",
+    "articleURL": "https://www.discover.com/online-banking/"
+}]

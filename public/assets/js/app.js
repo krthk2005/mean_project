@@ -1,4 +1,4 @@
-var app = angular.module('myApp', ['ngRoute', 'app.services', 'loginModule', 'headerModule', 'homeModule', 'settingsModule']);
+var app = angular.module('myApp', ['ngRoute', 'app.services', 'loginModule', 'headerModule', 'homeModule', 'settingsModule','stickyModule']);
 
 
 app.config(['$routeProvider', '$locationProvider', '$httpProvider', function($routeProvider, $locationProvider, $httpProvider) {
@@ -23,6 +23,10 @@ app.config(['$routeProvider', '$locationProvider', '$httpProvider', function($ro
   when('/signUpHere', {
     templateUrl: 'partials/login-folder/signUp.html',
     controller: 'settingsCtrl'
+  }).
+  when('/stickyNotes', {
+    templateUrl: 'partials/sticky-folder/sticky.html',
+    controller: 'stickyCtrl'
   }).
   otherwise({
     redirectTo: '/'

@@ -9,10 +9,9 @@ angular.module('app.services', ['ngResource'])
 .factory("SendUserProfile", function($resource) {
   return $resource("/validateUserProfile");
 })
-.factory("Weather", function($resource) {
-  return $resource("/employees");
+.factory("ArticleFetch", function($resource) {
+  return $resource("/getAllArticles");
 })
-
 .factory('AuthService', [function() {
    var user={
     isLoggedIn: false,
@@ -27,13 +26,9 @@ angular.module('app.services', ['ngResource'])
 	userData.setData = function(obj){
 		userData.user = obj;
 	}
-	return userData;
-}])
-.factory('LocalWeatherData',  [function(){
-	var weatherData ={};
-	weatherData.setData = function(obj){
-		weatherData.weather = obj;
+	userData.setWeatherData = function(obj){
+		userData.weather = obj;
 	}
-	return weatherData;
+	return userData;
 }])
 

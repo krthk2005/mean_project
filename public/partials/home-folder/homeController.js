@@ -1,5 +1,5 @@
 angular.module('homeModule', ['ngCookies'])
-    .controller('HomeCtrl', ['$scope', '$location', '$http', '$cookies', 'LocalUserData', 'LocalWeatherData', function($scope, $location, $http, $cookies, localData, localWeatherData) {
+    .controller('HomeCtrl', ['$scope', 'ArticleFetch','$location', '$http', '$cookies', 'LocalUserData', function($scope,ArticleFetch, $location, $http, $cookies, localData) {
         $scope.user = localData.user;
         var APIKEY = "2c56930e3e0117b9943b9f618acfe981";
         //http://api.openweathermap.org/data/2.5/weather?lat=17.3434321&lon=78.536526&appid=6c8c7c715a5bf8cc2938f6279ca2d4c6
@@ -21,11 +21,13 @@ angular.module('homeModule', ['ngCookies'])
             skycons.add("partly-cloudy-night", Skycons.PARTLY_CLOUDY_NIGHT);
             skycons.play();
         }
-
+ArticleFetch.query(function(data) {
+    $scope.articles= data;
+}); 
 
 
         $scope.nearme = function() {
-            if (!(localWeatherData != undefined && localWeatherData.weather != undefined)) {
+            if (!(localData != undefined && localData.weather != undefined)) {
                 if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(function(position) {
                         var latitude = position.coords.latitude;
@@ -33,7 +35,7 @@ angular.module('homeModule', ['ngCookies'])
                         if (latitude != undefined && latitude > 0) {
                             $http.jsonp("https://api.forecast.io/forecast/" + APIKEY + "/" + latitude + "," + longitude + "?callback=JSON_CALLBACK").then(function(response) {
                                 $scope.weather = response.data.currently;
-                                localWeatherData.setData(response.data.currently);
+                                localData.setWeatherData(response.data.currently);
                                 setTimeout(showIcons, 100);
                             });
                         }
@@ -41,7 +43,7 @@ angular.module('homeModule', ['ngCookies'])
                 }
             }
             else {
-                $scope.weather = localWeatherData.weather;
+                $scope.weather = localData.weather;
                 setTimeout(showIcons, 100);
             }
         }

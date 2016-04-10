@@ -20,14 +20,13 @@ a {
     white-space: nowrap;
     overflow-x: scroll;
     overflow-y: hidden;
-    display: inline;
 }
 
 .cover-item {
     position: relative;
     display: inline-block;
     margin: 8px 8px;
-    box-shadow: 2px 2px 4px #bbb;
+    /* box-shadow: 2px 2px 4px #bbb;*/
     border-top-right-radius: 4px;
     width: 116px;
     height: 158px;
@@ -37,7 +36,9 @@ a {
     background-size: cover;
 }
 
+
 /* Picture Horizontal scroll: Ends */
+
 #bg {
     background-image: url('http://supernovathemes.com/wp-content/themes/supernonvathemes/images/bg/b44.png');
     -webkit-background-size: cover;
@@ -155,81 +156,106 @@ a {
     float: right;
 }
 
+
 /* A hand-written font makes it look so much better. See the attribution below. */
 
+
 /*--------------------- Sticky note content Starts here ---------------------*/
+
+
 /* A nice paper texture for the full background, also attributed below. */
+
 #mainStickyLayout {
-  margin: 10px;
-  height: 1300px;
+    margin: 10px;
+    height: 1300px;
 }
+
+
 /* The fun part: making it look like a sticky note! .*/
+
 .sticky {
-  position: absolute;
-  width: 200px;
-  height: 180px;
-  padding: 1em;
-  cursor: move;
-  background-color: #fef282;
-  /* light-yellow default */
-  /*border: 1px solid #eee272;*/
-  box-shadow: 1px 2px 7px rgba(0, 0, 0, 0.27), 0 0 1em rgba(0, 0, 0, 0.1) inset;
-  -webkit-box-shadow: 1px 2px 7px rgba(0, 0, 0, 0.27), 0 0 1em rgba(0, 0, 0, 0.1) inset;
-  -moz-box-shadow: 1px 2px 7px rgba(0, 0, 0, 0.27), 0 0 1em rgba(0, 0, 0, 0.1) inset;
+    position: absolute;
+    width: 200px;
+    height: 180px;
+    padding: 1em;
+    cursor: move;
+    background-color: #fef282;
+    /* light-yellow default */
+    /*border: 1px solid #eee272;*/
+    box-shadow: 1px 2px 7px rgba(0, 0, 0, 0.27), 0 0 1em rgba(0, 0, 0, 0.1) inset;
+    -webkit-box-shadow: 1px 2px 7px rgba(0, 0, 0, 0.27), 0 0 1em rgba(0, 0, 0, 0.1) inset;
+    -moz-box-shadow: 1px 2px 7px rgba(0, 0, 0, 0.27), 0 0 1em rgba(0, 0, 0, 0.1) inset;
 }
+
 .sticky textarea {
-  background-color: #fef282;
-  width: 100%;
-  height: 100%;
-  resize: none;
-  border: none;
-  font-family: Hand, cursive;
-  font-size: 20px;
+    background-color: #fef282;
+    width: 100%;
+    height: 100%;
+    resize: none;
+    border: none;
+    font-family: Hand, cursive;
+    font-size: 20px;
 }
+
+
 /* colorful! */
+
 .sticky-yellow {
-  background-color: #fef282;
+    background-color: #fef282;
 }
+
 .sticky-yellow textarea {
-  background-color: #fef282;
+    background-color: #fef282;
 }
+
 .sticky-blue {
-  background-color: #84dcf4;
+    background-color: #84dcf4;
 }
+
 .sticky-blue textarea {
-  background-color: #84dcf4;
+    background-color: #84dcf4;
 }
+
 .sticky-orange {
-  background-color: #ffa300;
+    background-color: #ffa300;
 }
+
 .sticky-orange textarea {
-  background-color: #ffa300;
+    background-color: #ffa300;
 }
+
 .sticky-green {
-  background-color: #c3f900;
+    background-color: #c3f900;
 }
+
 .sticky-green textarea {
-  background-color: #c3f900;
+    background-color: #c3f900;
 }
+
 #content-proxy {
-  position: absolute;
-  left: -999px;
-  top: -999px;
-  border: none;
-  font-family: Hand, cursive;
-  font-size: 20px;
-  word-wrap: break-word;
-  white-space: pre-wrap;
+    position: absolute;
+    left: -999px;
+    top: -999px;
+    border: none;
+    font-family: Hand, cursive;
+    font-size: 20px;
+    word-wrap: break-word;
+    white-space: pre-wrap;
 }
+
 .sticky textarea:focus {
-  outline: none;
+    outline: none;
 }
+
+
 /*--------------------- Sticky note content finishes here ---------------------*/
-.welcomeNote{
+
+.welcomeNote {
     display: inline-block;
     color: grey;
     margin: 100px 100px 100px 100px;
 }
-.opinion{
+
+.opinion {
     margin: 18px 28px 10px 10px;
 }

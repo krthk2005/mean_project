@@ -1,8 +1,10 @@
 <div ng-include="'/partials/common/header.html'"></div>
 
 <img style="margin: -113px 0px 0px 10px;" src="{{user.picture}}" width="300" height="300"></img>
-<div class="welcomeNote"><h1>Welcome {{user.name}}!...</h1><br/>
-<span>find your updates below...</span>
+<div class="welcomeNote">
+    <h1>Welcome {{user.name}}!...</h1>
+    <br/>
+    <span>find your updates below...</span>
 </div>
 <div ng-init="nearme()" ng-show="weather" class="the-blur">
     <div class="container">
@@ -14,7 +16,8 @@
             </div>
 
             <div class="col-sm-3  text-center">
-                <h1>{{(weather.temperature - 32)/ 1.800 | number:2}}&deg; C</h1></div>
+                <h1>{{(weather.temperature - 32)/ 1.800 | number:2}}&deg; C</h1>
+            </div>
         </div>
     </div>
 </div>
@@ -23,9 +26,12 @@
     <div class="container-fluid">
         <h2 class="text-center">Picture Gallery</h2>
         <div class="row-fluid">
-            <div ng-repeat="article in articles" class="cover-container">
+            <div class="cover-container">
                 <!-- START PANEL -->
-                <a href="{{article.articleURL}}"><span class="cover-item" style="background-image: url('{{article.imageUrl}}')"></span></a>
+                <div  class="cover-item" ng-repeat="article in articles">
+                    <a href="{{article.articleURL}}"><span class="cover-item" style="background-image: url('{{article.imageUrl}}')"></span></a>
+                </div>
+
                 <!-- END PANEL -->
             </div>
         </div>

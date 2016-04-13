@@ -1,33 +1,22 @@
-var mongoose = require("mongoose");
+var Sequelize = require('sequelize');
+var env = process.env.NODE_ENV || 'development';
+var sequelize;
 
-// Build the connection string 
-var dbURI = 'mongodb://localhost/ConnectionTest';
+if (env === 'production') {
+	sequelize = new Sequelize(process.env.DATABASE_URL, {
+		dialect: 'postgres'
+	});
+} else {
+	sequelize = new Sequelize(undefined, undefined, undefined, {
+		'dialect': 'sqlite',
+		'storage': __dirname + '/data/dev-todo-api.sqlite'
+	});
+}
 
-// Create the database connection 
-mongoose.connect(dbURI);
+var db = {};
 
-// CONNECTION EVENTS
-// When successfully connected
-mongoose.connection.on('connected', function() {
-    console.log('Mongoose default connection open to ' + dbURI);
-});
+db.todo = sequelize.import(__dirname + '/models/todo.js');
+db.sequelize = sequelize;
+db.Sequelize = Sequelize;
 
-// If the connection throws an error
-mongoose.connection.on('error', function(err) {
-    console.log('Mongoose default connection error: ' + err);
-});
-
-// When the connection is disconnected
-mongoose.connection.on('disconnected', function() {
-    console.log('Mongoose default connection disconnected');
-});
-
-// If the Node process ends, close the Mongoose connection 
-process.on('SIGINT', function() {
-    mongoose.connection.close(function() {
-        console.log('Mongoose default connection disconnected through app termination');
-        process.exit(0);
-    });
-});
-
-//module.exports = mongoose.connection();
+module.exports = db;

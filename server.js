@@ -4,7 +4,10 @@ var bodyParser = require('body-parser');
 var jsonfile = require('jsonfile');
 var path = require('path');
 var cors = require('cors');
-// var db = require("./db");
+var _ = require("underscore");
+var db = require('./db.js');
+
+var PORT = process.env.PORT || 3000;
 
 var file = './data/employees.json';
 var responseJson = './data/response.json';
@@ -157,6 +160,32 @@ app.post('/employeeModifications', function(req, res) {
   jsonfile.writeFileSync(file, req.body);
   res.send("success");
 });
+
+app.get('/todos/:id', function(req, res) {
+	var todoId = parseInt(req.params.id, 10);
+
+	db.todo.findById(todoId).then(function(todo) {
+		if (!!todo) {
+			res.json(todo.toJSON());
+		} else {
+			res.status(404).send();
+		}
+	}, function(e) {
+		res.status(500).send();
+	});
+});
+
+app.post('/todos', function(req, res) {
+	var body = _.pick(req.body, 'description', 'completed');
+
+	db.todo.create(body).then(function(todo) {
+		res.json(todo.toJSON());
+	}, function(e) {
+		res.status(400).json(e);
+	});
+});
+
+
 // var proxy = require('express-http-proxy');
  
  
@@ -208,6 +237,12 @@ app.get('/*', function(req, res) {
 //     });
 
 // })
-http.createServer(app).listen(process.env.PORT, function() {
-  console.log("Server ready at http://localhost:3000");
+
+
+
+
+db.sequelize.sync().then(function() {
+  http.createServer(app).listen(PORT, function() {
+    console.log("Server ready at http://localhost:3000");
+  });
 });

@@ -1,3 +1,4 @@
+
 <div ng-include="'/partials/common/header.html'"></div>
 
 <img style="margin: -113px 0px 0px 10px;" src="{{user.picture}}" width="300" height="300"></img>
@@ -10,11 +11,15 @@
     <div class="container">
         <h2 class="text-center">Weather</h2>
         <div class="row">
-            <div class="col-sm-9">
+            <div class="col-sm-3">
                 <canvas id="{{weather.icon}}" width="128" height="128"></canvas>
                 {{weather.summary}}
             </div>
-
+<div class="col-sm-6"><input id="pac-input" class="controls" type="text" placeholder="Search Box" value="Miami, Florida">
+<div id="map-canvas"></div>
+<button id="trigger-search">Trigger search</button>
+</div></div>
+     
             <div class="col-sm-3  text-center">
                 <h1>{{(weather.temperature - 32)/ 1.800 | number:2}}&deg; C</h1>
             </div>

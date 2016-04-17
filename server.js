@@ -6,6 +6,8 @@ var path = require('path');
 var cors = require('cors');
 var _ = require("underscore");
 var db = require('./db.js');
+var bcrypt = require('bcrypt');
+var middleware = require('./middleware.js')(db);
 
 var PORT = process.env.PORT || 3000;
 
@@ -54,6 +56,35 @@ app.all('/', function(req, res, next) {
   next();
 });
 
+
+
+app.post('/createUser', function (req, res) {
+	var body = _.pick(req.body, 'email', 'password');
+
+	db.user.create(body).then(function (user) {
+		res.json(user.toPublicJSON());
+	}, function (e) {
+		res.status(400).json(e);
+	});
+});
+
+app.post('/userLogin', function (req, res) {
+	var body = _.pick(req.body, 'email', 'password');
+	var userInstance;
+
+	db.user.authenticate(body).then(function (user) {
+		var token = user.generateToken('authentication');
+		userInstance = user;
+
+		return db.token.create({
+			token: token
+		});
+	}).then(function (tokenInstance) {
+		res.header('Auth', tokenInstance.get('token')).json(userInstance.toPublicJSON());
+	}).catch(function () {
+		res.status(401).send();
+	});
+});
 
 
 
@@ -161,10 +192,15 @@ app.post('/employeeModifications', function(req, res) {
   res.send("success");
 });
 
-app.get('/todos/:id', function(req, res) {
+app.get('/todos/:id', middleware.requireAuthentication, function(req, res) {
 	var todoId = parseInt(req.params.id, 10);
 
-	db.todo.findById(todoId).then(function(todo) {
+	db.todo.findOne({
+		where: {
+			id: todoId,
+			userId: req.user.get('id')
+		}
+	}).then(function(todo) {
 		if (!!todo) {
 			res.json(todo.toJSON());
 		} else {
@@ -175,15 +211,18 @@ app.get('/todos/:id', function(req, res) {
 	});
 });
 
-app.post('/todos', function(req, res) {
-	var body = _.pick(req.body, 'description', 'completed');
 
-	db.todo.create(body).then(function(todo) {
-		res.json(todo.toJSON());
+// POST /todos
+app.post('/todos', middleware.requireAuthentication, function(req, res) {
+	var body = req.body//_.pick(req.body, 'description', 'completed','style','color');
+
+	db.todo.bulkCreate(body).then(function(todo) {
+		res.json(todo);
 	}, function(e) {
 		res.status(400).json(e);
 	});
 });
+
 
 
 // var proxy = require('express-http-proxy');
@@ -241,7 +280,7 @@ app.get('/*', function(req, res) {
 
 
 
-db.sequelize.sync().then(function() {
+db.sequelize.sync({force: true}).then(function() {
   http.createServer(app).listen(PORT, function() {
     console.log("Server ready at http://localhost:3000");
   });

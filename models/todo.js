@@ -11,6 +11,8 @@ module.exports = function(sequelize, DataTypes) {
 			type: DataTypes.BOOLEAN,
 			allowNull: false,
 			defaultValue: false
-		}
+		},
+		style: DataTypes.STRING,
+		color: DataTypes.STRING
 	});
 };

@@ -3,7 +3,9 @@ angular.module('app.services', ['ngResource'])
   //   $http.defaults.headers.common.Auth = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbiI6IlUyRnNkR1ZrWDE5WEdUMUVtd0RUaFBHNTZYSHJDd1ZaNEt2MGh5TVVuMXFSVnRZemk3SWJNeHlSYU16RGJlSC9hSHJZeXVPQ0hoMUhlVXFrb2ZDVC9RPT0iLCJpYXQiOjE0NjE2NjkwMjF9.QOwcsGt--SPv3Nd9tIXgcOgIjTQjxsYmWM9ZhWOQBc4"
   // })
 
-
+.factory("ArticleFetch", function($resource) {
+  return $resource("/getAllArticles");
+})
 
 .factory('services', ['$http', 'AuthService', function($http, userAuth) {
   var factoryCall = {};

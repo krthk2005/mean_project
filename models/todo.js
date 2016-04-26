@@ -35,9 +35,6 @@ module.exports = function(sequelize, DataTypes) {
 										$lt: 1,
 										$eq: null
 									}
-								},
-								count: {
-									$between: [1, 4]
 								}
 							}
 						});

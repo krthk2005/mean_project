@@ -172,7 +172,8 @@ app.get('/getTodos', middleware.requireAuthentication, function(req, res) {
       else {
         res.status(404).send();
       }
-    }, function(e) {l
+    }, function(e) {
+      l
       res.status(500).send();
     });
   }
@@ -192,7 +193,7 @@ app.post('/createUser', function(req, res) {
 app.post('/userLogin', function(req, res) {
   var body = _.pick(req.body, 'email', 'password');
   var userInstance;
-  var token ="";
+  var token = "";
   db.user.authenticate(body).then(function(user) {
     token = user.generateToken('authentication');
     userInstance = user;
@@ -203,7 +204,10 @@ app.post('/userLogin', function(req, res) {
     })
   }).then(function(todo) {
     if (todo) {
-      userInstance.dataValues.stickyNote = todo;
+      var stickys = _.map(todo, function(currentObject) {
+        return _.pick(currentObject, "description", "style", "color", "completed");
+      });
+      userInstance.dataValues.stickyNote = stickys;
     }
     return db.token.create({
       token: token

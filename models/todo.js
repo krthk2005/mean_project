@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-	return sequelize.define('todo', {
+	var todo = sequelize.define('todo', {
 		description: {
 			type: DataTypes.STRING,
 			allowNull: false,
@@ -13,6 +13,53 @@ module.exports = function(sequelize, DataTypes) {
 			defaultValue: false
 		},
 		style: DataTypes.STRING,
-		color: DataTypes.STRING
+		color: DataTypes.STRING,
+		count: DataTypes.INTEGER
+	}, {
+		classMethods: {
+			insertTodos: function(body, id) {
+				return new Promise(function(resolve, reject) {
+					todo.bulkCreate(body).then(function() {
+						return todo.destroy({
+							where: {
+								userId: id
+							}
+						});
+					}).then(function() {
+						return todo.update({
+							userId: id
+						}, {
+							where: {
+								userId: {
+									$or: {
+										$lt: 1,
+										$eq: null
+									}
+								},
+								count: {
+									$between: [1, 4]
+								}
+							}
+						});
+					}).then(function() {
+						return todo.destroy({
+							where: {
+								userId: {
+									$or: {
+										$lt: 1,
+										$eq: null
+									}
+								}
+							}
+						});
+					}).then(function() {
+						return resolve();
+					}).catch(function(e) {
+						return reject();
+					});
+				});
+			}
+		},
 	});
+	return todo;
 };

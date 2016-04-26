@@ -13,6 +13,11 @@ module.exports = function(sequelize, DataTypes) {
                 isEmail: true
             }
         },
+        name: DataTypes.STRING,
+        bgColor: DataTypes.STRING,
+        picture: DataTypes.STRING,
+        isActive: DataTypes.STRING,
+        age: DataTypes.INTEGER,
         salt: {
             type: DataTypes.STRING
         },
@@ -92,7 +97,7 @@ module.exports = function(sequelize, DataTypes) {
         instanceMethods: {
             toPublicJSON: function() {
                 var json = this.toJSON();
-                return _.pick(json, 'id', 'email', 'createdAt', 'updatedAt');
+                return _.pick(json, 'id', 'email','name','bgColor','picture','age','stickyNote', 'createdAt', 'updatedAt');
             },
             generateToken: function(type) {
                 if (!_.isString(type)) {

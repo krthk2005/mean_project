@@ -58,33 +58,6 @@ app.all('/', function(req, res, next) {
 
 
 
-app.post('/createUser', function (req, res) {
-	var body = _.pick(req.body, 'email', 'password');
-
-	db.user.create(body).then(function (user) {
-		res.json(user.toPublicJSON());
-	}, function (e) {
-		res.status(400).json(e);
-	});
-});
-
-app.post('/userLogin', function (req, res) {
-	var body = _.pick(req.body, 'email', 'password');
-	var userInstance;
-
-	db.user.authenticate(body).then(function (user) {
-		var token = user.generateToken('authentication');
-		userInstance = user;
-
-		return db.token.create({
-			token: token
-		});
-	}).then(function (tokenInstance) {
-		res.header('Auth', tokenInstance.get('token')).json(userInstance.toPublicJSON());
-	}).catch(function () {
-		res.status(401).send();
-	});
-});
 
 
 
@@ -172,13 +145,6 @@ app.post('/validateUserProfile', function(req, res) {
 });
 
 
-// app.get('/forecast', function(req, res) {
-//   req({
-//     url: "https://api.forecast.io/forecast/2c56930e3e0117b9943b9f618acfe981/17.3434321,78.536526"
-//   }, function(error, response, body) {
-//     res.send(response.body);
-//   });
-// })
 
 app.get('/employees', function(req, res) {
   res.json(jsonfile.readFileSync(file));
@@ -192,96 +158,118 @@ app.post('/employeeModifications', function(req, res) {
   res.send("success");
 });
 
-app.get('/todos/:id', middleware.requireAuthentication, function(req, res) {
-	var todoId = parseInt(req.params.id, 10);
-
-	db.todo.findOne({
-		where: {
-			id: todoId,
-			userId: req.user.get('id')
-		}
-	}).then(function(todo) {
-		if (!!todo) {
-			res.json(todo.toJSON());
-		} else {
-			res.status(404).send();
-		}
-	}, function(e) {
-		res.status(500).send();
-	});
+app.get('/getTodos', middleware.requireAuthentication, function(req, res) {
+  var id = req.user.get('id');
+  if (id > 0) {
+    db.todo.findAll({
+      where: {
+        userId: id
+      }
+    }).then(function(todo) {
+      if (todo) {
+        res.json(todo);
+      }
+      else {
+        res.status(404).send();
+      }
+    }, function(e) {l
+      res.status(500).send();
+    });
+  }
 });
 
 
-// POST /todos
+app.post('/createUser', function(req, res) {
+  var body = _.pick(req.body, 'email', 'password', "name", "age");
+
+  db.user.create(body).then(function(user) {
+    res.json(user.toPublicJSON());
+  }, function(e) {
+    res.status(400).json(e);
+  });
+});
+
+app.post('/userLogin', function(req, res) {
+  var body = _.pick(req.body, 'email', 'password');
+  var userInstance;
+  var token ="";
+  db.user.authenticate(body).then(function(user) {
+    token = user.generateToken('authentication');
+    userInstance = user;
+    return db.todo.findAll({
+      where: {
+        userId: user.dataValues.id
+      }
+    })
+  }).then(function(todo) {
+    if (todo) {
+      userInstance.dataValues.stickyNote = todo;
+    }
+    return db.token.create({
+      token: token
+    });
+  }).then(function(tokenInstance) {
+    res.header('Auth', tokenInstance.get('token')).json(userInstance.toPublicJSON());
+  }).catch(function() {
+    res.status(401).send();
+  });
+});
+
+app.post('/updateUser', middleware.requireAuthentication, function(req, res) {
+  var body = req.body;
+  var id = req.user.dataValues.id;
+  db.user.update({
+    name: body.name,
+    bgColor: body.bgColor,
+    picture: body.picture,
+    isActive: body.isActive,
+    age: body.age
+  }, {
+    where: {
+      id: id
+    }
+  }).then(function(affectedRows) {
+    db.user.findOne({
+      where: {
+        id: id
+      }
+    }).then(function(user) {
+      res.json(user.toPublicJSON());
+    }, function(e) {
+      res.status(500).send();
+    });
+  }).catch(function() {
+    res.status(500).send();
+  });
+});
+
+app.delete('/user/logout', middleware.requireAuthentication, function(req, res) {
+  req.token.destroy().then(function() {
+    res.status(204).send();
+  }).catch(function() {
+    res.status(500).send();
+  });
+});
+
 app.post('/todos', middleware.requireAuthentication, function(req, res) {
-	var body = req.body//_.pick(req.body, 'description', 'completed','style','color');
-
-	db.todo.bulkCreate(body).then(function(todo) {
-		res.json(todo);
-	}, function(e) {
-		res.status(400).json(e);
-	});
+  var body = req.body;
+  var id = req.user.dataValues.id;
+  db.todo.insertTodos(body, id).then(function() {
+    res.json(body);
+  }, function(e) {
+    res.status(400).json(e);
+  });
 });
 
-
-
-// var proxy = require('express-http-proxy');
- 
- 
-// app.use('/proxy', proxy('https://api.forecast.io/forecast/2c56930e3e0117b9943b9f618acfe981/17.3434321,78.536526', {
-//   filter: function(req, res) {
-//     return req.method == 'GET';
-//   },
-//   forwardPath: function(req, res) {
-//     return require('url').parse(req.url).path;
-//   }
-// }));
-var apiForwardingUrl = 'http://api.open-notify.org/astros.json?';
-
-var httpProxy = require('http-proxy');
-
-var apiProxy = httpProxy.createProxyServer();
-app.all("/space", function(req, res) {
-    apiProxy.web(req, res, {target: apiForwardingUrl});
-});
-// var request = require('request');
-// app.get('/forecast', function(req, res) {
-//   // res.send("success");
-//   request('https://api.forecast.io/forecast/2c56930e3e0117b9943b9f618acfe981/17.3434321,78.536526', function(error, response, body) {
-//     if (!error && response.statusCode == 200) {
-//       response.send(body);
-//       console.log(body) // Print the google web page.
-//     }
-//   })
-// });
 app.get('/*', function(req, res) {
-  // AJAX requests are aren't expected to be redirected to the AngularJS app
   if (req.xhr) {
     return res.status(404).send(req.url + ' not found');
   }
-  // `sendfile` requires the safe, resolved path to your AngularJS app
   res.sendFile(path.resolve(__dirname + '/public/index.html'));
 });
-
-
-// public foder for client side
-
-// express route to get the forecast data/json
-// app.get('/forecast', function(req, res) {
-
-//     request({
-//         url: "https://api.forecast.io/forecast/2c56930e3e0117b9943b9f618acfe981/17.3434321,78.536526"
-//     }, function (error, response, body) {
-//         res.send(response.body);
-//     });
-
-// })
-
-
-
-
-db.sequelize.sync({force: true}).then(function() {
+// {force: true}
+db.sequelize.sync().then(function() {
   http.createServer(app).listen(PORT, function() {
-    console.log("Server ready at http://localhost:3000");
+    console.log("Server ready at " + PORT);
   });
 });

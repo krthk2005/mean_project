@@ -16,7 +16,10 @@ module.exports = function(sequelize, DataTypes) {
         name: DataTypes.STRING,
         bgColor: DataTypes.STRING,
         picture: DataTypes.STRING,
-        isActive: DataTypes.STRING,
+        isActive:  {
+            type: DataTypes.INTEGER,
+            defaultValue: 0
+        },
         age: DataTypes.INTEGER,
         salt: {
             type: DataTypes.STRING

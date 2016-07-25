@@ -1,6 +1,6 @@
 angular.module('stickyModule', []).
-controller('stickyCtrl', ['$scope', 'LocalUserData', 'services', 'AuthService',
-    function($scope, localData, services, userAuth) {
+controller('stickyCtrl', ['$scope', 'LocalUserData', 'services',
+    function($scope, localData, services) {
 
         if (localData.user.stickyNote != undefined && localData.user.stickyNote.length > 1) {
             $scope.stickyList = localData.user.stickyNote;

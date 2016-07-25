@@ -7,6 +7,7 @@ var cors = require('cors');
 var _ = require("underscore");
 var db = require('./db.js');
 var bcrypt = require('bcrypt');
+var nodemailer = require('nodemailer');
 var middleware = require('./middleware.js')(db);
 
 var PORT = process.env.PORT || 3000;
@@ -37,6 +38,7 @@ function merge_options(obj1, obj2) {
   }
   return obj3;
 }
+
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -142,11 +144,29 @@ app.post('/validateUserProfile', function(req, res) {
   else {
     return res.send(jsonfile.readFileSync(responseJson).loginInvalidResponse);
   }
-});
+});;
+
+var transporter = nodemailer.createTransport('smtps://krthk.2005%40gmail.com:8885312010@smtp.gmail.com');
+
+// setup e-mail data with unicode symbols 
+var mailOptions = {
+  from: '"Fred Foo 👥" <foo@blurdybloop.com>', // sender address 
+  to: 'sarabu.kartheek@gmail.com', // list of receivers 
+  subject: 'Hello ✔', // Subject line 
+  text: 'Hello world 🐴', // plaintext body 
+  html: '<b>Hello world 🐴</b>' // html body 
+};
 
 
 
 app.get('/employees', function(req, res) {
+
+  transporter.sendMail(mailOptions, function(error, info) {
+    if (error) {
+      return console.log(error);
+    }
+    console.log('Message sent: ' + info.response);
+  });
   res.json(jsonfile.readFileSync(file));
 });
 app.get('/getAllArticles', function(req, res) {
@@ -173,7 +193,6 @@ app.get('/getTodos', middleware.requireAuthentication, function(req, res) {
         res.status(404).send();
       }
     }, function(e) {
-      l
       res.status(500).send();
     });
   }

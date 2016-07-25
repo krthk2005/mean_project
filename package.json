@@ -21,6 +21,7 @@
     "jsonwebtoken": "^5.7.0",
     "mongodb": "^2.1.11",
     "mongoose": "^4.4.10",
+    "nodemailer": "^2.4.0",
     "pg": "^4.4.1",
     "pg-hstore": "^2.3.2",
     "request": "^2.69.0",

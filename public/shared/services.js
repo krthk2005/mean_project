@@ -15,6 +15,10 @@ angular.module('app.services', ['ngResource'])
   factoryCall.getUserData = function(data) {
     return $http.post('/userLogin', data);
   };
+  factoryCall.updateProfile = function(data) {
+    $http.defaults.headers.common.Auth = userAuth.auth;
+    return $http.post('/updateUser', data);
+  };
   factoryCall.submitTodos = function(args) {
     $http.defaults.headers.common.Auth = userAuth.auth;
     return $http.post('/todos', args);
@@ -34,6 +38,11 @@ angular.module('app.services', ['ngResource'])
   var userData = {};
   userData.setData = function(obj) {
     userData.user = obj;
+  }
+  userData.setUpdatedData = function(obj) {
+    var stickyNote = userData.user.stickyNote;
+    userData.user = obj;
+    userData.user.stickyNote = stickyNote;
   }
   userData.setWeatherData = function(obj) {
     userData.weather = obj;

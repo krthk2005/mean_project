@@ -35,8 +35,8 @@ app.config(['$routeProvider', '$locationProvider', '$httpProvider', function($ro
 }]);
 
 
-/*
-app.run(function($rootScope, $location, LocalUserData) {
+
+/*app.run(function($rootScope, $location, LocalUserData) {
   $rootScope.$on("$routeChangeStart", function(event, next, current) {
     if (next.templateUrl == "partials/login-folder/signUp.html") {
       $location.path("/signUpHere");
@@ -48,5 +48,4 @@ app.run(function($rootScope, $location, LocalUserData) {
       $location.path("/home");
     }
   })
-})
-*/
+})*/
